@@ -1,0 +1,59 @@
+KRS\MailBundle\Entity\SentMail:
+  type: entity
+  table: karis_sent_mail
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    subject:
+      type: text 
+    body:
+      type: text
+      nullable: true
+    from_email:
+      type: string(3000)
+    to_email:
+      type: string(3000) 
+      nullable: true
+    cc_email:
+      type: string(3000) 
+      nullable: true
+    bcc_email:
+      type: string(3000) 
+      nullable: true
+    reply_to_email: 
+      type: string(3000)
+      nullable: true 
+    sender_email:
+      type: string(3000) 
+      nullable: true
+    strategy:
+      type: string(255).
+      nullable: true 
+    transport: 
+      type: string(255) 
+      nullable: true
+    culture: 
+      type: string(16) 
+      nullable: true
+    debug_string:
+      type: text 
+      nullable: true 
+    created:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updated:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update 
+  manyToOne:
+    mailTemplate:
+      targetEntity: MailTemplate
+      inversedBy: sentMail
+      joinColumn:
+        name: mail_template_id
+        referencedColumnName: id            

@@ -1,0 +1,15 @@
+parameters:
+    krs.mailer.class: KRS\MailBundle\Mailer\Mailer
+    krs.mailer_template_manager.entity_manager.class: KRS\MailBundle\Manager\MailerTemplateManager
+    krs.sent_mail_manager.entity_manager.class: KRS\MailBundle\Manager\SentMailManager
+
+services:
+     krs.mailer_template_manager.entity_manager:
+        class:        "%krs.mailer_template_manager.entity_manager.class%"
+        arguments:    [@doctrine.orm.entity_manager]
+     krs.sent_mail_manager.entity_manager:
+        class:        "%krs.sent_mail_manager.entity_manager.class%"
+        arguments:    [@doctrine.orm.entity_manager]
+     krs.mailer:
+         class: %krs.mailer.class%
+         arguments: [@mailer,@krs.mailer_template_manager.entity_manager,@krs.sent_mail_manager.entity_manager,@router,@twig,@service_container, @doctrine.orm.entity_manager]
