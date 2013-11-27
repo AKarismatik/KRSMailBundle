@@ -1,7 +1,7 @@
 {
-    "name": "krs/email-bundle",
+    "name": "krs/mail-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony2 EmailBundle.",
+    "description": "Symfony2 MailBundle.",
     "keywords": ["email"],
     "homepage": "https://github.com/AKarismatik/KRSMailBundle.git",
     "license": "MIT",
@@ -26,9 +26,9 @@
     },
 
     "autoload": {
-        "psr-0": { "KRS\\EmailBundle": "" }
+        "psr-0": { "KRS\\MailBundle": "" }
     },
 
-    "target-dir": "KRS/EmailBundle",
+    "target-dir": "KRS/MailBundle",
     "minimum-stability": "dev"
 }

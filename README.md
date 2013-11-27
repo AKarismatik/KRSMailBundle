@@ -1,44 +1,36 @@
-KRSMailBundle
+RjEmailBundle
 =============
-This bundle provides Templating and Attachment Decorating for SwiftMailer with Symfony
-Template
 
-The SwiftMailer template decorator, handles e-mail messages using the Symfony Templating Component.
-AttachmentDecorator
+The symfony2 krsEmailBundle provide an easy way to manage application email templates.
 
-The SwiftMailer attachment decorator is similar to Template decorator, but instead it handles attachments.
+Features include:
+
+- Manage Email Templates
+- Generate Sonata Admin
+
+
+Documentation
+-------------
+
+The bulk of the documentation is stored in the `Resources/doc/index.md`
+file in this bundle:
+
+[Read the Documentation for master](https://github.com/Remixjobs/RjEmailBundle/blob/master/Resources/doc/index.md)
+
 Installation
-Step 1: Using Composer (recommended)
+------------
 
-To install RollerworksMailBundle with Composer just add the following to your
-composer.json file:
+All the installation instructions are located in [documentation](https://github.com/Remixjobs/RjEmailBundle/blob/master/Resources/doc/index.md).
 
-// composer.json
-{
-    // ...
-    require: {
-        // ...
-        "krs/email-bundle": "dev-master",
-    }
-}
+TODO
+-----
+Integrate with https://github.com/robertotru/ToInlineStyleEmailBundle
 
-NOTE: Please replace master-dev in the snippet above with the latest stable
 
-Then, you can install the new dependencies by running Composer's update
-command from the directory where your composer.json file is located:
+Reporting an issue or a feature request
+---------------------------------------
 
-$ php composer.phar update
+Issues and feature requests are tracked in the [Github issue tracker](https://github.com/Remixjobs/RjEmailBundle/issues).
 
-Now, Composer will automatically download all required files, and install them
-for you. All that is left to do is to update your AppKernel.php file, and
-register the new bundle:
 
-<?php
-
-// in AppKernel::registerBundles()
-$bundles = array(
-    // ...
-    new KRS\MailBundle\KRSMailBundle(),
-    // ...
-);
 
