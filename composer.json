@@ -1,5 +1,5 @@
 {
-    "name": "krs/email-bundle",
+    "name": "karismatik/bundles",
     "type": "symfony-bundle",
     "description": "Symfony2 EmailBundle.",
     "keywords": ["email"],
