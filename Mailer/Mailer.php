@@ -367,8 +367,8 @@ class Mailer implements MailerInterface
  	return  $this->getEntityColumnValues($user,$this->em);
  } 
  
- public function getEntityColumnValues($entity,$em){
- 		$classMetadata = $emEntity->getClassMetadata(get_class($em));
+ public function getEntityColumnValues($entity){
+ 		$classMetadata = $this->em->getClassMetadata(get_class($this->em));
 	  	$idFields   = $classMetadata->getFieldNames();
         $values = array();
 
