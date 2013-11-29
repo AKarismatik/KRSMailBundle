@@ -6,8 +6,6 @@ namespace KRS\MailBundle\Mailer;
  * Mailer
  * 
  */
-use FOS\UserBundle\Mailer\MailerInterface;
-use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Routing\RouterInterface;
 use KRS\MailBundle\Entity\MailTemplate;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,13 +28,12 @@ class Mailer implements MailerInterface
     protected  $isRendered;
     protected  $twig;
     protected  $container;
-    protected  $em;
     
     /**
      * Constructor
      * 
      */
-    public function __construct($mailer,$mailerManager,$sentMailer,$router, \Twig_Environment $twig,ContainerInterface $container,$em)
+    public function __construct($mailer,$mailerManager,$sentMailer,$router, \Twig_Environment $twig,ContainerInterface $container)
     {
         $this->mailer = $mailer;
         $this->mailerManager = $mailerManager;
@@ -44,7 +41,6 @@ class Mailer implements MailerInterface
         $this->router = $router;
         $this->twig = $twig;
         $this->container = $container;
-        $this->em = $em;
         $this->initialize();
     }
 
@@ -225,7 +221,7 @@ class Mailer implements MailerInterface
      *
      * @return Mailer $this
      */
-    public function sendEmailMessage()
+    public function send()
     {
     	if(!$this->getTemplate()->getIsActive())
     	{
@@ -344,38 +340,5 @@ class Mailer implements MailerInterface
   protected function wrap($key)
   {
   	return '%'.$key.'%';
-  }
-  
-  
-  public function sendConfirmationEmailMessage(UserInterface $user)
-  {
-  	 $url = $this->router->generate('fos_user_registration_confirm', array('token' => $user->getConfirmationToken()), true);
-	 $this->setTemplate('fos_user_registration_confirm')->addValues(array('url'=>$url),'registration.')->addValues($this->getEntityColumnValues($user,$this->em),'user.');
-	 $this->sendEmailMessage();
-  }
-  
- 
-  public function sendResettingEmailMessage(UserInterface $user)
-  {
-	  	$url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), true);
-	  	$this->setTemplate('fos_user_resetting_reset')->addValues(array('url'=>$url),'reset.')->addValues($this->getEntityColumnValues($user,$this->em),'user.');
-	  	$this->sendEmailMessage();
-  }
-  
- public function getValuesUser($user)
- {
- 	return  $this->getEntityColumnValues($user,$this->em);
- } 
- 
- public function getEntityColumnValues($entity){
- 		$classMetadata = $this->em->getClassMetadata(get_class($this->em));
-	  	$idFields   = $classMetadata->getFieldNames();
-        $values = array();
-
-        foreach ($idFields as $idField)
-        {
-            $values[$idField] = $classMetadata->getFieldValue($entity, $idField);
-	  	}
-	  	return $values;
   }
 }
