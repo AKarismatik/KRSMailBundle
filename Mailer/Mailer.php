@@ -308,9 +308,11 @@ class Mailer
   {
     $replacements = array();
 
-    foreach($this->getValues() as $key => $value)
-    {
-      $replacements[$this->wrap($key)] = $value;
+    foreach($this->getValues() as $key => $value)	
+    {    	
+    	if (is_string($value)) {
+    		$replacements[$this->wrap($key)] = $value;
+    	}
     }
 
     return $replacements;
