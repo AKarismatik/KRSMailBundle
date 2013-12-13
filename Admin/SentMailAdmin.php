@@ -41,7 +41,6 @@ class SentMailAdmin extends Admin
 		$showMapper
 		->add('subject')
 		->add('body')
-		->add('description')
 		->add('from_email')
 		->add('to_email')
 		->add('mailTemplate')
@@ -58,7 +57,6 @@ class SentMailAdmin extends Admin
 		$formMapper
 		->add('subject')
 		->add('body')
-		->add('description')
 		->add('from_email')
 		->add('to_email')
 		->add('mailTemplate')
