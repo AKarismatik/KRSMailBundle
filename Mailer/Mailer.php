@@ -6,11 +6,13 @@ namespace KRS\MailBundle\Mailer;
  * Mailer
  * 
  */
+use FOS\UserBundle\Mailer\MailerInterface;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Routing\RouterInterface;
 use KRS\MailBundle\Entity\MailTemplate;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class Mailer
+class Mailer implements MailerInterface
 {
 
 	
