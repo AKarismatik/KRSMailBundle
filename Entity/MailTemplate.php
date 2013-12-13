@@ -77,11 +77,6 @@ class MailTemplate
     
 
     /**
-     * @var string
-     */
-    private $template_file;
-
-    /**
      * @var boolean
      */
     private $is_html;
@@ -405,30 +400,6 @@ class MailTemplate
         return $this->list_unsuscribe;
     }
     
-    
-    /**
-     * Set template_file
-     *
-     * @param string $template_file
-     * @return MailTemplate
-     */
-    public function setTemplateFile($templateFile)
-    {
-    	$this->template_file = $templateFile;
-    
-    	return $this;
-    }
-    
-    /**
-     * Get template_file
-     *
-     * @return string
-     */
-    public function getTemplateFile()
-    {
-    	return $this->template_file;
-    }
-
     /**
      * Set is_html
      *
