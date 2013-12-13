@@ -263,15 +263,17 @@ class Mailer
     
     $template =  $this->mailerManager->updateTemplate($template,$this->getValues());
     $replacements = $this->getReplacements();
+    
     //load the template content
-    $templateFile = 'KRSMailBundle:mailTemplate:karisMailTemplate.html.twig';
+    $templateMail = $template->getTemplateFile()?$template->getTemplateFile:"";
+    $templateFile = 'KRSMailBundle:mailTemplate:'.$templateMail;
     $templateContent = $this->twig->loadTemplate($templateFile);
     
     $body = $templateContent->render(array('body' =>strtr($template->getBody(), $replacements)));
     
     $message = $this->getMessage();
 
-    $from = array($template->getFromEmail() => "KRS");
+    $from = array($template->getFromEmail() => $template->getSenderEmail());
     $message
     ->setSubject(strtr($template->getSubject(), $replacements))
     ->setBody(strtr($body, $replacements),'text/html')
