@@ -41,6 +41,9 @@ KRS\MailBundle\Entity\MailTemplate:
     list_unsuscribe:
       type: string(3000) 
       nullable: true
+    template_file:
+      type: string
+      nullable: true  
     is_html:
       type: boolean
       nullable: true
