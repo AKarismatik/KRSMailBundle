@@ -265,8 +265,7 @@ class Mailer
     $replacements = $this->getReplacements();
     
     //load the template content
-    $templateMail = $template->getTemplateFile()?$template->getTemplateFile():"karisMailTemplate.html.twig";
-    $templateFile = 'KRSMailBundle:mailTemplate:'.$templateMail;
+    $templateFile = 'KRSMailBundle:mailTemplate:karisMailTemplate.html.twig';
     $templateContent = $this->twig->loadTemplate($templateFile);
     
     $body = $templateContent->render(array('body' =>strtr($template->getBody(), $replacements)));
