@@ -225,7 +225,7 @@ class Mailer implements MailerInterface
      *
      * @return Mailer $this
      */
-    public function sendEmailMessage()
+    public function send()
     {
     	if(!$this->getTemplate()->getIsActive())
     	{
