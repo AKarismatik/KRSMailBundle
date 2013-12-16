@@ -11,11 +11,11 @@ services:
      krs.mail_template.admin:
        class: "%krs.mail_template.admin.class%"
        tags:
-        - { name: sonata.admin, manager_type: orm, group: sonata_manage_mail, label: Manage Mail Content }
+        - { name: sonata.admin, manager_type: orm, group: sonata_manage_cms, label: Manage Mail Content }
        arguments: [null, "%krs.mail_template.entity%", "%krs.mail_template.controller%"]
        
      krs.sent_mail.admin:
        class: "%krs.sent_mail.admin.class%"
        tags:
-        - { name: sonata.admin, manager_type: orm, group: sonata_manage_mail, label: Manage Mail sent }
+        - { name: sonata.admin, manager_type: orm, group: sonata_manage_cms, label: Manage Mail sent }
        arguments: [null,"%krs.sent_mail.admin.entity%", "%krs.sent_mail.admin.controller%"]

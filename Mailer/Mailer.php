@@ -30,12 +30,13 @@ class Mailer implements MailerInterface
     protected  $isRendered;
     protected  $twig;
     protected  $container;
+    protected  $em;
     
     /**
      * Constructor
      * 
      */
-    public function __construct($mailer,$mailerManager,$sentMailer,$router, \Twig_Environment $twig,ContainerInterface $container)
+    public function __construct($mailer,$mailerManager,$sentMailer,$router, \Twig_Environment $twig,ContainerInterface $container,$em)
     {
         $this->mailer = $mailer;
         $this->mailerManager = $mailerManager;
@@ -43,6 +44,7 @@ class Mailer implements MailerInterface
         $this->router = $router;
         $this->twig = $twig;
         $this->container = $container;
+        $this->em = $em;
         $this->initialize();
     }
 
@@ -223,7 +225,7 @@ class Mailer implements MailerInterface
      *
      * @return Mailer $this
      */
-    public function send()
+    public function sendEmailMessage()
     {
     	if(!$this->getTemplate()->getIsActive())
     	{
@@ -265,7 +267,6 @@ class Mailer implements MailerInterface
     
     $template =  $this->mailerManager->updateTemplate($template,$this->getValues());
     $replacements = $this->getReplacements();
-    
     //load the template content
     $templateFile = 'KRSMailBundle:mailTemplate:karisMailTemplate.html.twig';
     $templateContent = $this->twig->loadTemplate($templateFile);
@@ -274,7 +275,7 @@ class Mailer implements MailerInterface
     
     $message = $this->getMessage();
 
-    $from = array($template->getFromEmail() => $template->getSenderEmail());
+    $from = array($template->getFromEmail() => "KRS");
     $message
     ->setSubject(strtr($template->getSubject(), $replacements))
     ->setBody(strtr($body, $replacements),'text/html')
@@ -311,11 +312,9 @@ class Mailer implements MailerInterface
   {
     $replacements = array();
 
-    foreach($this->getValues() as $key => $value)	
-    {    	
-    	if (is_string($value)) {
-    		$replacements[$this->wrap($key)] = $value;
-    	}
+    foreach($this->getValues() as $key => $value)
+    {
+      $replacements[$this->wrap($key)] = $value;
     }
 
     return $replacements;
@@ -347,18 +346,36 @@ class Mailer implements MailerInterface
   	return '%'.$key.'%';
   }
   
+  
   public function sendConfirmationEmailMessage(UserInterface $user)
   {
-  	$url = $this->router->generate('fos_user_registration_confirm', array('token' => $user->getConfirmationToken()), true);
-  	$this->setTemplate('fos_user_registration_confirm')->addValues(array('url'=>$url),'registration.')->addValues(array('user'=>$user->getUsername()));
-  	$this->sendEmailMessage();
+  	 $url = $this->router->generate('fos_user_registration_confirm', array('token' => $user->getConfirmationToken()), true);
+	 $this->setTemplate('fos_user_registration_confirm')->addValues(array('url'=>$url),'registration.')->addValues($this->getEntityColumnValues($user,$this->em),'user.');
+	 $this->sendEmailMessage();
   }
   
-  
+ 
   public function sendResettingEmailMessage(UserInterface $user)
   {
-  	$url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), true);
-  	$this->setTemplate('fos_user_resetting_reset')->addValues(array('url'=>$url),'reset.')->addValues(array('user'=>$user->getUsername()));
-  	$this->sendEmailMessage();
+	  	$url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), true);
+	  	$this->setTemplate('fos_user_resetting_reset')->addValues(array('url'=>$url),'reset.')->addValues($this->getEntityColumnValues($user,$this->em),'user.');
+	  	$this->sendEmailMessage();
+  }
+  
+ public function getValuesUser($user)
+ {
+ 	return  $this->getEntityColumnValues($user,$this->em);
+ } 
+ 
+ public function getEntityColumnValues($entity,$em){
+ 		$classMetadata = $emEntity->getClassMetadata(get_class($em));
+	  	$idFields   = $classMetadata->getFieldNames();
+        $values = array();
+
+        foreach ($idFields as $idField)
+        {
+            $values[$idField] = $classMetadata->getFieldValue($entity, $idField);
+	  	}
+	  	return $values;
   }
 }

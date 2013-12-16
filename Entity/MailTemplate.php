@@ -74,7 +74,6 @@ class MailTemplate
      * @var string
      */
     private $list_unsuscribe;
-    
 
     /**
      * @var boolean
@@ -399,7 +398,7 @@ class MailTemplate
     {
         return $this->list_unsuscribe;
     }
-    
+
     /**
      * Set is_html
      *

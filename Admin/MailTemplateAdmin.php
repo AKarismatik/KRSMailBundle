@@ -64,7 +64,7 @@ class MailTemplateAdmin extends Admin
 				->add('description',null, array('label' => 'Titre'))
 				->add('subject', null, array('required' => true))
 				->add('vars_mail', null,  array('attr' => array('readonly' => true)))
-				->add('body')
+				->add('body', 'genemu_tinymce', array('attr'=>array('class' => 'genemu_tinymce')))
 				->add('is_html')
 				->add('is_active')
 		   ->with('Info')
