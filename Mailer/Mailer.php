@@ -346,4 +346,19 @@ class Mailer implements MailerInterface
   {
   	return '%'.$key.'%';
   }
+  
+  public function sendConfirmationEmailMessage(UserInterface $user)
+  {
+  	$url = $this->router->generate('fos_user_registration_confirm', array('token' => $user->getConfirmationToken()), true);
+  	$this->setTemplate('fos_user_registration_confirm')->addValues(array('url'=>$url),'registration.')->addValues(array('user'=>$user->getUsername()));
+  	$this->sendEmailMessage();
+  }
+  
+  
+  public function sendResettingEmailMessage(UserInterface $user)
+  {
+  	$url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), true);
+  	$this->setTemplate('fos_user_resetting_reset')->addValues(array('url'=>$url),'reset.')->addValues(array('user'=>$user->getUsername()));
+  	$this->sendEmailMessage();
+  }
 }
