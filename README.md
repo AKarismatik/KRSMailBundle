@@ -27,7 +27,7 @@ The goal is to let a non-developper manage sent mails, by moving all mail attrib
 
 ### Step 1: Download KRSMailBundle using composer
 
-Add JmABBundle in your composer.json:
+Add KRSMailBundle in your composer.json:
 
 ```js
 {
