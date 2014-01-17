@@ -163,3 +163,5 @@ You can call the addValues() method several times, and pass it a prefix as a sec
  * %user_username%, %user_email%, %user_is_active%, %petition_name%, %petition_text%, %petition_url%  
  */ 
 ```
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/AKarismatik/krsmailbundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
