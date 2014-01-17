@@ -149,9 +149,9 @@ In this case, the table columns are used as keys, and the object values as value
 /*  
  * Values available in the template:  
  * %username%, %email%, %is_active%, ...  
- */  ```
+ */  
 You can call the addValues() method several times, and pass it a prefix as a second argument:
-```
+
 ->addValues($user, 'user_')
 ->addValues($petition, 'petition_')  
 ->addValues(array(  
