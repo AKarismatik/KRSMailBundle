@@ -187,7 +187,7 @@ class Mailer implements MailerInterface
     			{
     				$values[$key] = $value;
     			}
-    			catch(Exception $e)
+    			catch(\Exception $e)
     			{
     				unset($values[$key]);
     			}
