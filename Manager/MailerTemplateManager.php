@@ -2,7 +2,7 @@
 
 namespace KRS\MailBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectManager;
 use KRS\MailBundle\Entity\MailTemplate;
 use KRS\MailBundle\Manager\BaseManager;
 
@@ -10,7 +10,7 @@ class MailerTemplateManager extends BaseManager
 {
     protected $em;
 
-    public function __construct(EntityManager $em)
+    public function __construct(ObjectManager $em)
     {
         $this->em = $em;
     }
