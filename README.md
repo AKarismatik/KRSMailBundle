@@ -34,3 +34,7 @@ Issues and feature requests are tracked in the [Github issue tracker](https://gi
 
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/AKarismatik/krsmailbundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
